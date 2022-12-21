@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/01. Scene/HoloLens_Scene_MainBackUp.unity
+    guid: 5630bb01aa45a1445b5f85772ab201d2
+  - enabled: 1
+    path: Assets/01. Scene/HoloLens_Scene_Hardware.unity
+    guid: 9771ebbdd78da544eadbdaf81402dcb1
+  - enabled: 0
+    path: Assets/02. Scene/HoloLens_Server.unity
+    guid: 1d0650da384c2be45abfefca1a8c9698
+  - enabled: 0
+    path: Assets/01. Scene/Equip_Model.unity
+    guid: 97e50a39bab92cb488f0d4944b0c4a83
+  - enabled: 0
+    path: Assets/01. Scene/Server.unity
+    guid: 1d0896b96b046294ebeae0b5c555be4d
+  m_configObjects: {}
