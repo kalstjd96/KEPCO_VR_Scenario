@@ -70,7 +70,7 @@ public void PhotonVoiceSet()
     }
 }
 ```
-<img src="https://user-images.githubusercontent.com/47016363/217998078-331fba74-9df0-4c51-ac18-9ff4d9780b5e.png"  width="400" height="250"/>
+<img src="https://user-images.githubusercontent.com/47016363/218071476-ad655fce-a0c6-4e88-986e-1f27d65ea778.png"  width="800" height="250"/>
 
 ## Panel List Viewer
 
