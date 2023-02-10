@@ -5,19 +5,22 @@
 ## Features (담당 기능)
 
 -   [멀티 환경 구성](#multiPlayer)
-    -  [사용자 간 음성통신](#multiPlayer)
+    -  [사용자 간 음성통신](#photon-voice)
     -  [RPC를 통한 정보공유](#multiPlayer)
     -  [Photon Local Server Setting](#multiPlayer)
--   [Panel 리스트 뷰어 기능](#panel-list-viewer)
--   [절차별 Target에 대한 상태](#target-state)
--   [그래프로 표현된 Data 정보 열람 기능](#graph-data-viewer)
--   [HoloLens2 Motion 적용(MRTK)](#mrtk)
+-   [인터렉션 기능 개발](#panel-list-viewer)
+    -  [대상 간 거리 계산](#multiPlayer)
+    -  [Player가 행하는 행위](#multiPlayer)
+-   [가상 현실 기능 개발](#target-state)
+    -  [타겟의 위치 가이드](#multiPlayer)
+    -  [Sound 조작 기능](#multiPlayer)
     
-## Panel Procedure DB
+## MultiPlayer
 
 >사용된 스크립트<br/>
 > DB_Manager.cs
 
+### (1) photon Voice
 Control Panel 진행에 대한 절차를 SQLite 기반으로 DB 구성하였습니다.
 
 ## Panel List Viewer
