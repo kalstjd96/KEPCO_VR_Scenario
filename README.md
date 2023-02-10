@@ -17,11 +17,60 @@
     
 ## MultiPlayer
 
->사용된 스크립트<br/>
-> DB_Manager.cs
+Photon을 사용하여 멀티 기능을 구현하였습니다.
 
 ### (1) photon Voice
-Control Panel 진행에 대한 절차를 SQLite 기반으로 DB 구성하였습니다.
+
+```c#
+
+// List 생성
+[PunRPC]
+public void PhotonVoiceSet()
+{
+    isMultiStart = true;
+
+    //1. 레코더가 오브젝트에 담기
+    voice = GameObject.Find("Voice").transform;
+
+    recorder = voice.GetComponent<Recorder>().transform;
+    //recorder.GetComponent<Recorder>().DebugEchoMode = true;
+
+    for (int i = 0; i < player.Length; i++)
+    {
+        targetPhone = phone[i]; //0 : 발신자 , 1 : 수신자
+
+        //4. Player에게 있는 PhotonVoiceView에 레코더 설정, 스피커 연결하고 설정을 해준다.
+        if (i == 0)
+        {
+            player[iresult].GetComponent<PhotonVoiceView>().RecorderInUse = recorder.GetComponent<Recorder>();
+            Transform speakerObj = player[i].GetComponentInChildren<Speaker>(true).transform;
+            oriMCRSpeakerParent = player[i];
+
+            speakerObj.GetComponent<Speaker>().enabled = true;
+            speakerObj.SetParent(phone[1]);
+        }
+        else if (i == 1)
+        {
+            Transform speakerObj = player[i].GetComponentInChildren<Speaker>(true).transform;
+            oriLocalSpeakerParent = player[i];
+
+            speakerObj.GetComponent<Speaker>().enabled = true;
+            speakerObj.SetParent(phone[0]);
+        }
+
+        if (!targetPhone.GetComponent<AudioSource>())
+            targetPhone.gameObject.AddComponent<AudioSource>();
+
+        targetPhone.gameObject.GetComponent<AudioSource>().rolloffMode = AudioRolloffMode.Linear; //거리에 따라 목소리의 크기가 달라진다.
+        targetPhone.gameObject.GetComponent<AudioSource>().minDistance = 1f;
+        targetPhone.gameObject.GetComponent<AudioSource>().maxDistance = 500f;
+
+        targetPhone.GetComponent<AudioSource>().playOnAwake = true;
+        targetPhone.GetComponent<AudioSource>().loop = true;
+    }
+}
+```
+<img src="https://user-images.githubusercontent.com/47016363/217998078-331fba74-9df0-4c51-ac18-9ff4d9780b5e.png"  width="400" height="250"/>
 
 ## Panel List Viewer
 
@@ -33,31 +82,51 @@ Control Panel 진행에 대한 절차를 SQLite 기반으로 DB 구성하였습�
 ```c#
 
 // List 생성
-public void Create()
-{
-    buttonList = new List<GameObject>();
-
-    for (int i = 0; i < procedureRowDic.Count; i++)
+ [PunRPC]
+    public void PhotonVoiceSet()
     {
-        int rowIndex = procedureRowDic.ElementAt(i).Key;
-        if (!ProjectManager.instance.GetData(rowIndex, "SubList").Equals("TRUE"))
+        isMultiStart = true;
+
+        //1. 레코더가 오브젝트에 담기
+        voice = GameObject.Find("Voice").transform;
+
+        recorder = voice.GetComponent<Recorder>().transform;
+        //recorder.GetComponent<Recorder>().DebugEchoMode = true;
+        
+        for (int i = 0; i < player.Length; i++)
         {
-            GameObject listObj = Instantiate(listPrefab, listParent.transform);
-            listObj.GetComponent<Interactable>().OnClick.AddListener(delegate
+            targetPhone = phone[i]; //0 : 발신자 , 1 : 수신자
+
+            //4. Player에게 있는 PhotonVoiceView에 레코더 설정, 스피커 연결하고 설정을 해준다.
+            if (i == 0)
             {
-                SkipTo(rowIndex);
-            });
+                player[iresult].GetComponent<PhotonVoiceView>().RecorderInUse = recorder.GetComponent<Recorder>();
+                Transform speakerObj = player[i].GetComponentInChildren<Speaker>(true).transform;
+                oriMCRSpeakerParent = player[i];
 
-            //리스트 속성 설정
-            listObj.transform.Find("Number").GetComponent<TMP_Text>().text = (i + 1).ToString("000") + ". ";
-            listObj.transform.Find("Local").GetComponent<TMP_Text>().text = "[ " + ProjectManager.instance.GetData(rowIndex, "Location") + " ]";
-            listObj.transform.Find("Main_Text").GetComponent<TMP_Text>().text = procedureRowDic.ElementAt(i).Value;
+                speakerObj.GetComponent<Speaker>().enabled = true;
+                speakerObj.SetParent(phone[1]);
+            }
+            else if (i == 1)
+            {
+                Transform speakerObj = player[i].GetComponentInChildren<Speaker>(true).transform;
+                oriLocalSpeakerParent = player[i];
 
-            buttonList.Add(listObj);
+                speakerObj.GetComponent<Speaker>().enabled = true;
+                speakerObj.SetParent(phone[0]);
+            }
+
+            if (!targetPhone.GetComponent<AudioSource>())
+                targetPhone.gameObject.AddComponent<AudioSource>();
+
+            targetPhone.gameObject.GetComponent<AudioSource>().rolloffMode = AudioRolloffMode.Linear; //거리에 따라 목소리의 크기가 달라진다.
+            targetPhone.gameObject.GetComponent<AudioSource>().minDistance = 1f;
+            targetPhone.gameObject.GetComponent<AudioSource>().maxDistance = 500f;
+
+            targetPhone.GetComponent<AudioSource>().playOnAwake = true;
+            targetPhone.GetComponent<AudioSource>().loop = true;
         }
     }
-    listParent.GetComponent<GridObjectCollection>().UpdateCollection(); //Grid 정렬 갱신
-}
 ```
 <img src="https://user-images.githubusercontent.com/47016363/217998078-331fba74-9df0-4c51-ac18-9ff4d9780b5e.png"  width="400" height="250"/>
 
