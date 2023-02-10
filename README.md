@@ -6,9 +6,9 @@
 
 -   [멀티 환경 구성](#multiPlayer)
     -  [사용자 간 음성통신](#photon-voice)
-    -  [RPC를 통한 정보공유](#multiPlayer)
-    -  [Photon Local Server Setting](#multiPlayer)
--   [인터렉션 기능 개발](#panel-list-viewer)
+    -  [RPC를 통한 정보공유]
+    -  [Photon Local Server Setting]
+-   [인터렉션 기능 개발](#interaction)
     -  [대상 간 거리 계산](#multiPlayer)
     -  [Player가 행하는 행위](#multiPlayer)
 -   [가상 현실 기능 개발](#target-state)
@@ -72,10 +72,7 @@ public void PhotonVoiceSet()
 ```
 <img src="https://user-images.githubusercontent.com/47016363/218071476-ad655fce-a0c6-4e88-986e-1f27d65ea778.png"  width="800" height="250"/>
 
-## Panel List Viewer
-
->사용된 스크립트<br/>
-> ProcedureList.cs
+## Interaction
 
 진행해야할 절차를 리스트 형태로 확인하는 기능을 구현하였습니다.
 
