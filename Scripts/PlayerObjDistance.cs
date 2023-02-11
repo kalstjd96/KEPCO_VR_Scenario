@@ -4,68 +4,52 @@ using UnityEngine;
 
 public class PlayerObjDistance : MonoBehaviour
 {
-    //public float standardHeight = 1.5f;
-
-    float distance; //°Å¸®
-    float direction; // ¹æÇâ
-    //private Transform target;
+    float distance; //ê±°ë¦¬
+    Vector3 direction; // ë°©í–¥
+    public const float maxDistance = 7f; 
 
     private RaycastHit hit;
-    private float maxDistance = 300f;
+    private float maxRaycast = 300f;
 
+    /// <summary>
+    /// Playerì™€ Target ê°„ì˜ ê±°ë¦¬ ë¹„êµ í›„ ëŒ€ìƒ ìœ„ì¹˜ë¡œ í…”ë ˆí¬íŠ¸
+    /// </summary>
+    /// <param name="target">í•´ë‹¹ ì ˆì°¨ì— ì²˜ë¦¬í•´ì•¼í•  ëŒ€ìƒ</param>
+    /// <param name="targetVector">ì²˜ë¦¬í•´ì•¼í•  ëŒ€ìƒì˜ RendererCenter</param>
+    /// <returns>í…”ë ˆí¬íŠ¸ í•´ì•¼í•  ì§€ì— ëŒ€í•œ ì—¬ë¶€ </returns>
     public bool DistanceComparison(Transform target, Vector3 targetVector)
     {
-        bool isTelePort = false;
-        Transform playerCamera = transform.Find("SteamVRObjects/VRCamera"); ;
-        //1. µÎ ¿ÀºêÁ§Æ® °£ÀÇ °Å¸® °è»ê 
+        //Transform playerCamera = transform.Find("SteamVRObjects/VRCamera"); ;
+        Transform playerCamera = transform;
+        Vector3 reSetting = playerCamera.position;
         distance = Vector3.Distance(playerCamera.position, targetVector);
-        Debug.Log("°Å¸® : " + distance);
-        Debug.Log("Å¸°Ù : " + target.name, target.gameObject);
 
-        if (distance >= 7f) //2. Æ¯Á¤ °Å¸® ÀÌ»óÀÏ °æ¿ì (´Ù¸¥ ÃşÀÌµç °°Àº ÃşÀÌµç ¹«Á¶°Ç ÀÌµ¿)
+        if (distance >= maxDistance)
+            return true;
+        else
         {
-            isTelePort = true;
-        }
-        else //3.ÀÏÁ¤ °Å¸® ÀÌ»óÀº µÇÁö ¾ÊÀ¸³ª ´Ù¸¥ ÃşÀÏ °¡´É¼ºÀÌ ÀÖ±â¿¡ °Ë»ç
-        {
-            //4. µÎ ¿ÀºêÁ§Æ® °£ÀÇ ³ôÀÌ °è»ê
-            if ((playerCamera.position - target.position).y <= 0f) //6. À½¼öÀÏ °æ¿ì TargetÀº À§¿¡ ÀÖ´Ù´Â °Í
+            if ((playerCamera.position - target.position).y <= 0f)
+                direction = playerCamera.up;
+            else
+                direction = -playerCamera.up; 
+
+            reSetting.y += 0.1f;
+            if (Physics.Raycast(reSetting, direction, out hit, maxRaycast, 1 << LayerMask.NameToLayer("Floor")))
             {
-                //7. ±×·¸´Ù¸é À§·Î Ray¸¦ ½÷¼­ Player¿Í FloorÀÇ ±æÀÌ¸¦ ±¸ÇÑ´Ù.(8¹øÀº º®(floor)À» ÀÇ¹Ì)
-                if (Physics.Raycast(playerCamera.position, playerCamera.up, out hit, Mathf.Infinity/*maxDistance*/, 1 << LayerMask.NameToLayer("Floor")))
-                {
-                    //8. ±¸ÇÑ RayÀÇ ±æÀÌ¿Í Target À§Ä¡ÀÇ ³ôÀÌ¸¦ ºñ±³ 
-                    if (hit.distance < Mathf.Abs((playerCamera.position - target.position).y)) //¹°Ã¼°¡ Ãş ³Ê¸Ó¿¡ ÀÖ´Ù´Â °Í
-                    {
-                        isTelePort = true;
-                    }
-                }
-            }
-            else //7. ¾ç¼öÀÏ °æ¿ì TargetÀº ¾Æ·¡¿¡ ÀÖ´Ù´Â °Í
-            {
-                if (Physics.Raycast(playerCamera.position, -playerCamera.up, out hit, maxDistance, 1 << LayerMask.NameToLayer("Floor")))
-                {
-                    if (hit.distance < Mathf.Abs((playerCamera.position - target.position).y)) //¹°Ã¼°¡ Ãş ³Ê¸Ó¿¡ ÀÖ´Ù´Â °Í
-                        isTelePort = true;
-                }
+                if (hit.distance < Mathf.Abs((playerCamera.position - target.position).y))
+                    return true;
             }
         }
-        return isTelePort;
+        return false;
     }
 
-
-
-    //private void Update()
-    //{
-    //    SetPlayerHeight();
-    //}
-    //°¨ÁöµÈ FloorÀÇ ¿ùµåÁÂÇ¥y¸¦ Player ÁÂÇ¥·Î ´ëÀÔ, Å°¿¡ µû¸¥ ³ôÀÌ »óÀÌÇÔÀ» º¸Á¤
+    //ê°ì§€ëœ Floorì˜ ì›”ë“œì¢Œí‘œyë¥¼ Player ì¢Œí‘œë¡œ ëŒ€ì…, í‚¤ì— ë”°ë¥¸ ë†’ì´ ìƒì´í•¨ì„ ë³´ì •
     public float playerHeight;
     public float floorHeight;
     public Transform currentFloor;
-    public void SetPlayerHeight(Vector3 tg_Bounds)
+    public void SetPlayerHeight()
     {
-        Transform floor = currentFloor = MinimapManager.instance.FloorCheck(tg_Bounds);
+        Transform floor = currentFloor = MinimapManager.instance.FloorCheck();
 
         floorHeight = floor.position.y;
 
@@ -74,27 +58,5 @@ public class PlayerObjDistance : MonoBehaviour
         transform.position = playerPos;
 
         playerHeight = transform.position.y;
-        //if (floor)
-        //{
-        //    if (currentFloor != floor)
-        //    {
-        //        floorHeight = floor.position.y;
-
-        //        Vector3 playerPos = transform.position;
-        //        playerPos.y = floorHeight;
-        //        transform.position = playerPos;
-        //    }
-        //}
-        //currentFloor = floor;
-        //Vector3 camPos = Camera.main.transform.position;
-        //float heightFromFloor = camPos.y - detectedFloorHeight; //°¨ÁöµÈ ¹Ù´ÚÀ¸·Î ºÎÅÍÀÇ °Å¸®
-        //Vector3 playerPos = transform.position;
-        //float diff = heightFromFloor - standardHeight; //±âÁØ°ú ½ÇÁ¦ Å°ÀÇ ÆíÂ÷
-        //if (diff > 0) //±âÁØ °Å¸®º¸´Ù Å©¸é
-        //    playerPos.y -= diff; // ±× Â÷¾×¸¸Å­ Player ³»¸®±â
-        //else if (diff < 0)
-        //    playerPos.y += diff; // ±× Â÷¾×¸¸Å­ Player ¿Ã¸®±â
-        //playerHeight = playerPos.y;
-        //transform.position = playerPos;
     }
 }
