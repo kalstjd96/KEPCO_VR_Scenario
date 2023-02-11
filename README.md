@@ -23,7 +23,6 @@ Photon을 사용하여 멀티 기능을 구현하였습니다.
 
 ```c#
 
-// List 생성
 [PunRPC]
 public void PhotonVoiceSet()
 {
@@ -75,13 +74,13 @@ public void PhotonVoiceSet()
 
 ## Interaction
 
-진행해야할 절차를 리스트 형태로 확인하는 기능을 구현하였습니다.
+시나리오를 진행하는데 있어 필요한 기능을 개발하였습니다.
+ex. 대상 간의 거리 계산, Target 방향 가이드, 장비 
 
 ### (1) Distance Check
 
 ```c#
 
-// List 생성
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
