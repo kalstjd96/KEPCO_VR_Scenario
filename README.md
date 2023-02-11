@@ -8,12 +8,11 @@
     -  [사용자 간 음성통신](#photon-voice)
     -  RPC를 통한 정보공유
     -  Photon Local Server Setting
--   [인터렉션 기능 개발](#interaction)
+-   [인터렉션, 가상 현실 기능 개발](#interaction)
     -  [대상 간 거리 계산](#distance-check)
     -  Player가 행하는 행위
--   [가상 현실 기능 개발](#target-state)
-    -  [Sound 조작 기능](#multiPlayer)
-    -  Target 위치 가이드(#multiPlayer)
+    -  [Sound 조작 기능](#audio-manager)
+    -  Target 위치 가이드
     
 ## MultiPlayer
 
@@ -144,54 +143,38 @@ public class PlayerObjDistance : MonoBehaviour
     }
 }
 ```
-<img src="https://user-images.githubusercontent.com/47016363/217998078-331fba74-9df0-4c51-ac18-9ff4d9780b5e.png"  width="400" height="250"/>
+<img src="https://user-images.githubusercontent.com/47016363/218258384-517bd295-da59-4b3f-81a1-111d8e61b443.png"  width="800" height="250"/>
 
-## Target State
-
->사용된 스크립트<br/>
-> Highlight.cs , GuideMessage.cs 
-
-해당 절차에 대한 Target 상태를 표현하였습니다. ex. 애니메이션, 가이드 등 
+### (2) Audio Manager
 
 ```c#
 
-//하이라이트 색상으로 깜빡임 
-while (true)
+public void PlayMultiAudio(AudioClip selectedClip, float volume = 1.0f)
 {
-    for (int i = 0; i < targets.Length; i++)
+    if (audioSourceList.Count < 3)
     {
-        Material targeMat = highlightMaterial;
-        Color targetColor = targeMat.color;
-        //Color targetColor = new Color(0f, 30f, 255f, 255f) * 10f : Color.white * 200f;
-        targetColor.a = 1.5f;
+        GameObject newSoundOBJ = new GameObject();
+        newSoundOBJ.transform.parent = this.transform;
+        newSoundOBJ.transform.localPosition = Vector3.zero;
+        AudioSource audioSrc = newSoundOBJ.AddComponent<AudioSource>();
+        audioSrc.playOnAwake = false;
+        newSoundOBJ.name = "Sound EffObj";
 
-        for (int j = 0; j < targets[i].materials.Length; j++)
-        {
-            // Target의 RenderMode 변경 
-            ChangeRenderMode(targets[i].materials[j], BlendMode.Transparent);
-            targets[i].materials[j] = targeMat;
-            targets[i].materials[j].SetColor("_Color",
-                Color.Lerp(targeMat.color, targetColor, Mathf.PingPong(Time.time, 1.5f)));
-        }
-
+        audioSourceList.Add(audioSrc);
     }
-    yield return null;
+
+    if (selectedClip != null && audioSourceList[multiCount])
+    {
+        audioSourceList[multiCount].clip = selectedClip;
+        audioSourceList[multiCount].volume = volume * volumeSize;
+        audioSourceList[multiCount].Play(0);
+
+        multiCount++;
+        if (multiCount >= 3)
+            multiCount = 0;
+    }
 }
 
 
 ```
-<img src="https://user-images.githubusercontent.com/47016363/217998187-0a5727b9-833d-4189-af01-abc630d038c0.png"  width="400" height="250"/>
-
-## Graph Data Viewer
-
-DB에 저장된 데이터를 기반으로 그래프 뷰어를 구현하였습니다. (오픈소스 )
-
-<img src="https://user-images.githubusercontent.com/47016363/217997541-07d916e2-a315-4baa-97a3-63c46751ec48.png"  width="400" height="250"/>
-
-## MRTK
-
-MRTK를 통해 가상 물체의 크기, 위치, 회전 등 조작 기능을 적용하였습니다.
-
-<img src="https://user-images.githubusercontent.com/47016363/217986555-00894438-ebaa-4e50-9ef7-49df1b70e041.png"  width="400" height="250"/>
-<img src="https://user-images.githubusercontent.com/47016363/217989203-7a7d481d-4426-46e0-8399-3153e20877ce.png"  width="400" height="250"/>
 
