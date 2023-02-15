@@ -18,7 +18,7 @@
 
 Photon을 사용하여 멀티 기능을 구현하였습니다.
 
-### (1) photon Voice
+### (1) Photon Voice
 
 ```c#
 
