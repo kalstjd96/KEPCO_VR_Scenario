@@ -40,7 +40,7 @@ public void PhotonVoiceSet()
         //4. Player에게 있는 PhotonVoiceView에 레코더 설정, 스피커 연결하고 설정을 해준다.
         if (i == 0)
         {
-            player[iresult].GetComponent<PhotonVoiceView>().RecorderInUse = recorder.GetComponent<Recorder>();
+            player[i].GetComponent<PhotonVoiceView>().RecorderInUse = recorder.GetComponent<Recorder>();
             Transform speakerObj = player[i].GetComponentInChildren<Speaker>(true).transform;
             oriMCRSpeakerParent = player[i];
 
