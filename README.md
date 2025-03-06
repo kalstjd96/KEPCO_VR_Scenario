@@ -68,7 +68,7 @@ public bool DistanceComparison(Transform target, Vector3 targetVector)
 }
 ```
 
-➡ **📂 전체 코드 보기**: [MultiPagingPhonManager.cs](https://github.com/kalstjd96/KEPCO_VR_Scenario/blob/main/Scripts/PlayerObjDistance.cs#L20-L44)
+➡ **📂 전체 코드 보기**: [PlayerObjDistance.cs](https://github.com/kalstjd96/KEPCO_VR_Scenario/blob/main/Scripts/PlayerObjDistance.cs#L20-L44)
 
 <img src="https://user-images.githubusercontent.com/47016363/218258384-517bd295-da59-4b3f-81a1-111d8e61b443.png" width="800"/>
 
@@ -88,7 +88,5 @@ public void PlayMultiAudio(AudioClip selectedClip, float volume = 1.0f)
 }
 ```
 
-➡ **📂 전체 코드 보기**: [MultiPagingPhonManager.cs](https://github.com/kalstjd96/KEPCO_VR_Scenario/blob/main/Scripts/Manager/AudioManager.cs)
-
-```
+➡ **📂 전체 코드 보기**: [AudioManager.cs](https://github.com/kalstjd96/KEPCO_VR_Scenario/blob/main/Scripts/Manager/AudioManager.cs)
 
