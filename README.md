@@ -50,7 +50,7 @@ public void PhotonVoiceSet()
 }
 ```
 
-➡ 📂 전체 코드 보기: PhotonVoiceManager.cs  
+➡ 📂 전체 코드 보기: Scripts/Voice 
 
 <img src="https://user-images.githubusercontent.com/47016363/218071476-ad655fce-a0c6-4e88-986e-1f27d65ea778.png" width="800"/>  
 
