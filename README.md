@@ -10,7 +10,7 @@
 ## 📌 프로젝트 개요
 - **개발 환경**: `Unity 2021.3 LTS`, `C#`, `Photon`
 - **주요 기능**
-  - 🎮 **멀티플레이어 지원** (`Photon`)  
+  - 🎮 **멀티플레이어 적용** (`Photon`)  
   - 🎤 **음성 채팅 기능** (`Photon Voice`)  
   - 📏 **대상 거리 측정 및 안내 시스템**  
   - 🔊 **3D 오디오 시스템 적용**  
@@ -19,16 +19,14 @@
 
 ## 📂 프로젝트 구조
 📦 VR-SafetyEducation 
-├── 📁 Assets │ 
-├── 📁 Scripts # 주요 기능을 담당하는 C# 스크립트 │ 
-├── 📁 Prefabs # 사전 제작된 VR 오브젝트 │ 
-├── 📁 Scenes # Unity 씬 파일 │ 
-├── 📁 Audio # 음성 및 효과음 리소스 │ 
-├── 📁 Models # 3D 모델 데이터 │ 
-├── 📁 Textures # 텍스처 및 UI 리소스 │ 
-├── 📄 README.md # 프로젝트 개요 문서 
-└── 📄 .gitignore
-
+├── 📁 Assets │ <br>
+  ├── 📁 Scripts # 주요 기능을 담당하는 C# 스크립트 │ <br>
+  ├── 📁 Prefabs # 사전 제작된 VR 오브젝트 │ <br>
+  ├── 📁 Scenes # Unity 씬 파일 │<br>
+  ├── 📁 Audio # 음성 및 효과음 리소스 │ <br>
+  ├── 📁 Models # 3D 모델 데이터 │<br>
+  ├── 📁 Textures # 텍스처 및 UI 리소스 │ <br>
+  ├── 📄 README.md # 프로젝트 개요 문서 <br>
 
 ---
 
