@@ -41,7 +41,7 @@ public void PhotonVoiceSet()
 }
 ```
 ➡ 📂 전체 코드 보기: PhotonVoiceManager.cs
-
+<img src="https://user-images.githubusercontent.com/47016363/218071476-ad655fce-a0c6-4e88-986e-1f27d65ea778.png" width="800"/>
 
 ## 🎯 (2) 인터랙션 시스템 <a id="interaction"></a>
 VR 환경에서의 다양한 인터랙션 기능을 개발하였습니다.
@@ -57,8 +57,45 @@ public bool DistanceComparison(Transform target, Vector3 targetVector)
 }
 ```
 ➡ 📂 전체 코드 보기: DistanceCheck.cs
+<img src="https://user-images.githubusercontent.com/47016363/218258384-517bd295-da59-4b3f-81a1-111d8e61b443.png" width="800"/>
 
 
+🔊 (3) 3D 오디오 시스템 <a id="audio-manager"></a>
+게임 내 오디오를 보다 현실감 있게 관리하기 위한 시스템을 구축했습니다.
+
+```c#
+public void PlayMultiAudio(AudioClip selectedClip, float volume = 1.0f)
+{
+    if (selectedClip == null) return;
+    audioSourceList[multiCount].clip = selectedClip;
+    audioSourceList[multiCount].volume = volume;
+    audioSourceList[multiCount].Play(0);
+
+    multiCount = (multiCount + 1) % 3;
+}
+```
+➡ 📂 전체 코드 보기: AudioManager.cs
+
+
+🚀 설치 및 실행 방법
+🔧 1. 환경 설정
+Unity 2021.3 LTS 버전 이상 설치
+Photon Unity Networking (PUN2) 패키지 추가
+▶️ 2. 실행 방법
+GitHub에서 프로젝트 클론
+```c#
+git clone https://github.com/your-repository-url.git
+```
+Unity에서 프로젝트 열기
+Photon App ID 설정
+Assets/Resources/PhotonServerSettings.asset 파일에 App ID 입력
+Play 버튼을 눌러 실행
+
+
+📢 추가 개선 사항 (추천)
+✅ 데모 영상 추가 → 프로젝트 소개를 영상으로 제공
+✅ 스크린샷 추가 → 주요 기능을 이미지로 보여주기
+✅ 기술 스택 아이콘 추가 → Unity, Photon, C# 아이콘 사용
 
 # 신고리 5,6호기 VR 안전 교육 시스템
 
