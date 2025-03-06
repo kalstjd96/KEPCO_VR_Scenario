@@ -32,15 +32,32 @@ Photon을 활용하여 네트워크 기반 멀티플레이어 환경을 구축�
 #### 🔊 (1-1) 사용자 간 음성 통신 (`Photon Voice`)  
 > **특징**: RPC를 사용하여 실시간 음성 통신을 구현  
 
-```csharp
+```c#
 [PunRPC]
 public void PhotonVoiceSet()
 {
     isMultiStart = true;
     recorder = GameObject.Find("Voice").GetComponent<Recorder>().transform;
 }
-
+```
 ➡ 📂 전체 코드 보기: PhotonVoiceManager.cs
+
+
+## 🎯 (2) 인터랙션 시스템 <a id="interaction"></a>
+VR 환경에서의 다양한 인터랙션 기능을 개발하였습니다.
+
+📏 (2-1) 대상 간 거리 측정 시스템
+특징: 대상과의 거리를 체크하여 적절한 위치로 이동
+
+```c#
+public bool DistanceComparison(Transform target, Vector3 targetVector)
+{
+    float distance = Vector3.Distance(transform.position, targetVector);
+    return distance >= maxDistance;
+}
+```
+➡ 📂 전체 코드 보기: DistanceCheck.cs
+
 
 
 # 신고리 5,6호기 VR 안전 교육 시스템
