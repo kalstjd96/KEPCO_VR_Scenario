@@ -50,7 +50,7 @@ public void PhotonVoiceSet()
 }
 ```
 
-➡ **📂 전체 코드 보기**: [MultiPagingPhonManager.cs (L333-L378)](https://github.com/your-username/your-repository/blob/main/Scripts/Voice/MultiPagingPhonManager.cs#L10-L20)
+➡ **📂 전체 코드 보기**: [MultiPagingPhonManager.cs (L333-L378)](https://github.com/kalstjd96/KEPCO_VR_Scenario/blob/main/Scripts/Voice/MultiPagingPhonManager.cs#L10-L20)
 
 
 <img src="https://user-images.githubusercontent.com/47016363/218071476-ad655fce-a0c6-4e88-986e-1f27d65ea778.png" width="800"/>  
