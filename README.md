@@ -1,5 +1,48 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=VR-SafetyEducation&fontSize=80" /> 
 
+# 🚧 신고리 5·6호기 VR 안전 교육 시스템
+
+> **VR 환경에서 실감형 안전 교육을 제공하는 프로젝트**  
+> Unity 기반의 가상 현실(VR) 시뮬레이션으로 멀티플레이 및 인터랙션 기능을 구현
+
+---
+
+## 📌 프로젝트 개요
+- **개발 환경**: `Unity 2021.3 LTS`, `C#`, `Photon`
+- **주요 기능**
+  - 🎮 **멀티플레이어 지원** (`Photon`)  
+  - 🎤 **음성 채팅 기능** (`Photon Voice`)  
+  - 📏 **대상 거리 측정 및 안내 시스템**  
+  - 🔊 **3D 오디오 시스템 적용**  
+
+---
+
+## 📂 프로젝트 구조
+📦 VR-SafetyEducation ├── 📁 Assets │ ├── 📁 Scripts # 주요 기능을 담당하는 C# 스크립트 │ ├── 📁 Prefabs # 사전 제작된 VR 오브젝트 │ ├── 📁 Scenes # Unity 씬 파일 │ ├── 📁 Audio # 음성 및 효과음 리소스 │ ├── 📁 Models # 3D 모델 데이터 │ ├── 📁 Textures # 텍스처 및 UI 리소스 │ ├── 📄 README.md # 프로젝트 개요 문서 └── 📄 .gitignore
+
+
+---
+
+## 🎮 주요 기능 및 코드 예제
+
+### 🟢 (1) 멀티플레이어 환경 <a id="multiPlayer"></a>
+
+Photon을 활용하여 네트워크 기반 멀티플레이어 환경을 구축했습니다.
+
+#### 🔊 (1-1) 사용자 간 음성 통신 (`Photon Voice`)  
+> **특징**: RPC를 사용하여 실시간 음성 통신을 구현  
+
+```csharp
+[PunRPC]
+public void PhotonVoiceSet()
+{
+    isMultiStart = true;
+    recorder = GameObject.Find("Voice").GetComponent<Recorder>().transform;
+}
+
+➡ 📂 전체 코드 보기: PhotonVoiceManager.cs
+
+
 # 신고리 5,6호기 VR 안전 교육 시스템
 
 ## Features (담당 기능)
