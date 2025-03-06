@@ -20,8 +20,8 @@
 ## 📂 프로젝트 구조
 📦 VR-SafetyEducation <br>
 ├── 📁 Assets │ <br>
-  &nbsp;├── 📁 Scripts # 주요 기능을 담당하는 C# 스크립트 │ <br>
-  &nbsp;├── 📁 Prefabs # 사전 제작된 VR 오브젝트 │ <br>
+  &nbsp;>├── 📁 Scripts # 주요 기능을 담당하는 C# 스크립트 │ <br>
+  &nbsp;>├── 📁 Prefabs # 사전 제작된 VR 오브젝트 │ <br>
   &nbsp;├── 📁 Scenes # Unity 씬 파일 │<br>
   &nbsp;├── 📁 Audio # 음성 및 효과음 리소스 │ <br>
   &nbsp;├── 📁 Models # 3D 모델 데이터 │<br>
